@@ -104,12 +104,6 @@
     <Compile Include="Reporting\DefaultAssemblyFilterTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReportGenerator\ReportGenerator.csproj">
-      <Project>{BBDF4589-00C7-44C9-97E5-641D708BCA3C}</Project>
-      <Name>ReportGenerator</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
@@ -134,7 +128,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ReportGenerator.Core\ReportGenerator.Core.csproj">
+      <Project>{c2eb389b-6c8f-42f0-b338-4ff3ea695a1e}</Project>
+      <Name>ReportGenerator.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

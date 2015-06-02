@@ -94,7 +94,7 @@ namespace Palmmedia.ReportGenerator.MSBuild
                 this.Filters == null ? Enumerable.Empty<string>() : this.Filters.Select(r => r.ItemSpec),
                 this.VerbosityLevel);
 
-            return Program.Execute(configuration);
+            return ProgramCore.Execute(configuration);
         }
     }
 }

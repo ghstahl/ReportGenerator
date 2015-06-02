@@ -12,8 +12,24 @@ namespace Palmmedia.ReportGenerator.Reporting
     /// <summary>
     /// Implementation of <see cref="IReportBuilderFactory"/> based on MEF.
     /// </summary>
-    internal class MefReportBuilderFactory : IReportBuilderFactory
+    public class MefReportBuilderFactory : IReportBuilderFactory
     {
+        private static IAssemblyAccumulator _assemblyAccumulator;
+        public static IAssemblyAccumulator AssemblyAccumulator
+        {
+            get
+            {
+                if (_assemblyAccumulator == null)
+                {
+                    var directoryName = new FileInfo(Assembly.GetEntryAssembly().Location).DirectoryName;
+                    _assemblyAccumulator = new FileSystemLocalAssemblyAccumulator(directoryName);
+                    
+                }
+                return _assemblyAccumulator;
+                
+            }
+            set { _assemblyAccumulator = value; }
+        }
         /// <summary>
         /// The Logger.
         /// </summary>
@@ -100,37 +116,18 @@ namespace Palmmedia.ReportGenerator.Reporting
         {
             AggregateCatalog aggregateCatalog = new AggregateCatalog();
 
-            foreach (var file in new FileInfo(typeof(MefReportBuilderFactory).Assembly.Location).Directory.EnumerateFiles("*.dll"))
+            foreach (var assembly in AssemblyAccumulator.Assemblies())
             {
-                try
-                {
-                    // Unblock files, this prevents FileLoadException (e.g. if file was extracted from a ZIP archive)
-                    FileUnblocker.Unblock(file.FullName);
-
-                    var assemblyCatalog = new AssemblyCatalog(Assembly.LoadFrom(file.FullName));
-                    assemblyCatalog.Parts.ToArray(); // This may throw ReflectionTypeLoadException 
-                    aggregateCatalog.Catalogs.Add(assemblyCatalog);
-                }
-                catch (FileLoadException)
-                {
-                    Logger.ErrorFormat(Resources.FileLoadError, file.FullName);
-                    throw;
-                }
-                catch (ReflectionTypeLoadException ex)
-                {
-                    if (!file.Name.Equals("ICSharpCode.NRefactory.Cecil.dll", StringComparison.OrdinalIgnoreCase))
-                    {
-                        string errors = string.Join(Environment.NewLine, ex.LoaderExceptions.Select(e => "-" + e.Message));
-                        Logger.ErrorFormat(Resources.FileReflectionLoadError, file.FullName, errors);
-                    }
-
-                    // Ignore assemblies that throw this exception
-                }
+                var assemblyCatalog = new AssemblyCatalog(assembly);
+                assemblyCatalog.Parts.ToArray(); // This may throw ReflectionTypeLoadException 
+                aggregateCatalog.Catalogs.Add(assemblyCatalog);
             }
+
 
             using (var container = new CompositionContainer(aggregateCatalog))
             {
                 var reportBuilders = container.GetExportedValues<IReportBuilder>();
+                Console.WriteLine(string.Format("Found:{0}",reportBuilders.Count()));
                 return reportBuilders;
             }
         }

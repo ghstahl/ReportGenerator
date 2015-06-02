@@ -53,6 +53,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_CSharp", "ReportGenera
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Test_FSharp", "ReportGenerator.Testprojects\FSharp\Project\Test_FSharp.fsproj", "{953D4A9C-5271-4A6D-876A-7E41B93BEE77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportGenerator.Core", "ReportGenerator.Core\ReportGenerator.Core.csproj", "{C2EB389B-6C8F-42F0-B338-4FF3EA695A1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FatReportGenerator", "FatReportGenerator\FatReportGenerator.csproj", "{30E99FCD-4A62-4B05-B572-EB9D3E44F0A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,14 @@ Global
 		{953D4A9C-5271-4A6D-876A-7E41B93BEE77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{953D4A9C-5271-4A6D-876A-7E41B93BEE77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{953D4A9C-5271-4A6D-876A-7E41B93BEE77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2EB389B-6C8F-42F0-B338-4FF3EA695A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2EB389B-6C8F-42F0-B338-4FF3EA695A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2EB389B-6C8F-42F0-B338-4FF3EA695A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2EB389B-6C8F-42F0-B338-4FF3EA695A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30E99FCD-4A62-4B05-B572-EB9D3E44F0A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E99FCD-4A62-4B05-B572-EB9D3E44F0A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E99FCD-4A62-4B05-B572-EB9D3E44F0A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E99FCD-4A62-4B05-B572-EB9D3E44F0A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

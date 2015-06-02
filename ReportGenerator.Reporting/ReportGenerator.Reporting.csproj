@@ -57,12 +57,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReportGenerator\ReportGenerator.csproj">
-      <Project>{bbdf4589-00c7-44c9-97e5-641d708bca3c}</Project>
-      <Name>ReportGenerator</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Rendering\resources\custom.css" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Rendering\resources\matchMedia.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReportGenerator.Core\ReportGenerator.Core.csproj">
+      <Project>{c2eb389b-6c8f-42f0-b338-4ff3ea695a1e}</Project>
+      <Name>ReportGenerator.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
